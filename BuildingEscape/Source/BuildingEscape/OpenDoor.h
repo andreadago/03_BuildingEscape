@@ -28,4 +28,8 @@ private:
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate;
 	
+	UPROPERTY(EditAnywhere)
+	AActor* ActorThatOpens; //remember Pawn inherits from Actor
+
+	void OpenDoor();
 };
