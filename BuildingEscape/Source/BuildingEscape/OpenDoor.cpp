@@ -36,20 +36,11 @@ void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompo
 	{
 		OpenDoor();
 		LastDoorOpenTime = GetWorld()->GetTimeSeconds();
-
-		
-
-		UE_LOG(LogTemp, Warning, TEXT("LastDoorOpenTime: %f"), LastDoorOpenTime);
-
-
 	}
-	UE_LOG(LogTemp, Warning, TEXT("GetTimeSeconds: %f"), LastDoorOpenTime);
 
 	//Check if it's time to close the door
 	if ((GetWorld()->GetTimeSeconds() - LastDoorOpenTime) > DoorCloseDelay)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Close the door!"));
-
 		CloseDoor();
 	}
 }
