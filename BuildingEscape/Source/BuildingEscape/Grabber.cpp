@@ -33,13 +33,11 @@ void UGrabber::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompon
 
 
 
-	// Get the player view point
+	/// Get the player view point
 	FVector PlayerViewPointLocation;
 	FRotator PlayerViewPointRotation;
 	
 	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(OUT PlayerViewPointLocation, OUT PlayerViewPointRotation);
-
-	//UE_LOG(LogTemp, Warning, TEXT("Location: %s ; Rotation: %s"), *PlayerViewPointLocation.ToString(), *PlayerViewPointRotation.ToString())
 
 	//Draw a red trace
 	FVector LineTraceDirection = PlayerViewPointRotation.Vector() * Reach;
@@ -57,5 +55,25 @@ void UGrabber::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompon
 		10.f
 	);
 
+	///Line-trace (AKA ray-cast)
+	FCollisionQueryParams CollisionQueryParams(FName(TEXT("")), false, GetOwner());
+	FHitResult Hit;
+
+	GetWorld()->LineTraceSingleByObjectType(
+		Hit,
+		PlayerViewPointLocation,
+		LineTraceEnd,
+		FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody),
+		CollisionQueryParams
+		);
+
+	AActor* ActorHit = Hit.GetActor();
+	if (ActorHit)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Line Trace Hit: %s"), *ActorHit->GetName());
+	}
+
+		
+	
 }
 
