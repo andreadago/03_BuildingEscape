@@ -28,7 +28,6 @@ private:
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate;
 	
-	AActor* ActorThatOpens; //remember Pawn inherits from Actor
 	AActor* Owner; //The owning door
 
 	UPROPERTY(EditAnywhere)
@@ -38,4 +37,6 @@ private:
 
 	void OpenDoor();
 	void CloseDoor();
+
+	float GetTotalMassOfActorsInPlate();
 };
