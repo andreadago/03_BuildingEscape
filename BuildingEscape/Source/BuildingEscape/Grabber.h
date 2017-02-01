@@ -24,8 +24,8 @@ public:
 private:
 
 	//How far ahead of the player can we reach cm
-	float Reach = 100.f;
-	
+	float Reach = 100.f;	
+
 	//Physics Handle
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
 
@@ -46,4 +46,11 @@ private:
 
 	//Return hit for first physics body in reach
 	const FHitResult GetFirstPhysicsBodyInReach();
+
+	//Return the vector representing the line to default pawn 
+	FVector GetReachLineStart();
+
+	//Return the vector representing the line from default pawn to the object to grab
+	FVector GetReachLineEnd();
+
 };
